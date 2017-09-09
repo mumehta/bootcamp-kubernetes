@@ -1,0 +1,20 @@
+
+kubectl --kubeconfig=kubeconfig run node-api --image=191618872039.dkr.ecr.ap-southeast-2.amazonaws.com/bootcamp/node-api:b32365c --replicas=2 --port=80
+kubectl --kubeconfig=kubeconfig expose deployment node-api --target-port=3000 --type=LoadBalancer
+kubectl --kubeconfig=cluster/kubeconfig rolling-update node-api --image=191618872039.dkr.ecr.ap-southeast-2.amazonaws.com/bootcamp/node-api:b32365c
+
+kubectl --kubeconfig=kubeconfig rolling-update node-api --image=191618872039.dkr.ecr.ap-southeast-2.amazonaws.com/bootcamp/node-api:4c9dd59
+
+kubectl --kubeconfig=cluster/kubeconfig run node-api --image=191618872039.dkr.ecr.ap-southeast-2.amazonaws.com/bootcamp/node-api:4c9dd59 --replicas=2 --port=80
+
+kubectl --kubeconfig=cluster/kubeconfig run node-api --image=191618872039.dkr.ecr.ap-southeast-2.amazonaws.com/bootcamp/node-api:4c9dd59 --replicas=2 --port=80
+
+kubectl --kubeconfig=cluster/kubeconfig create -f deployment.yaml
+kubectl --kubeconfig=cluster/kubeconfig run node-api --image=191618872039.dkr.ecr.ap-southeast-2.amazonaws.com/bootcamp/node-api:4c9dd59 --port=80
+kubectl --kubeconfig=cluster/kubeconfig expose deployment node-api --target-port=3000 --type=LoadBalancer
+
+
+kubectl --kubeconfig=cluster/kubeconfig rolling-update node-api --image=191618872039.dkr.ecr.ap-southeast-2.amazonaws.com/bootcamp/node-api:4c9dd59
+kubectl --kubeconfig=cluster/kubeconfig describe services
+
+kubectl --kubeconfig=cluster/kubeconfig set image deployment/node-api node-api=node-api:416f82e

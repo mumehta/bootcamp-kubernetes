@@ -1,0 +1,11 @@
+{
+  "name": "node-api",
+  "version": "1.0.0",
+  "description": "node-api",
+  "main": "server.js",
+  "dependencies": {
+    "express": "3.2.4"
+  },
+  "author": "kogulan",
+  "license": "ISC"
+}
